@@ -17,6 +17,7 @@ export class MyCard extends LitElement {
     this.title = "Josh Allen";
     this.image = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Josh_Allen_SEPT2021_%28cropped2%29.jpg/1200px-Josh_Allen_SEPT2021_%28cropped2%29.jpg";
     this.link = "https://codepen.io/NoahC570/pen/ZYzZqzW";
+    this.description = "Josh Allen is the greatest QB to ever live."; // Default description
   }
 
   static get styles() {
@@ -24,25 +25,22 @@ export class MyCard extends LitElement {
       :host {
         display: block;
       }
-      .card.toggled {
-      background-color: orange;
-      color: blue;
-      }
-
-            .card {
+      .card {
         background-color: #4f2a06;
         width: 400px;
         text-align: center;
+        padding: 15px;
+        border-radius: 10px;
       }
       .cardheader {
         color: yellow;
-        margin: 10px 0px 10px 0px;
-        font-size: 40px;
+        margin: 10px 0;
+        font-size: 30px;
         font-family: "Times New Roman", Times, serif;
       }
       p {
         color: yellow;
-        margin: 10px 25px 10px 25px;
+        margin: 10px;
         font-family: "Times New Roman", Times, serif;
       }
       img {
@@ -53,9 +51,11 @@ export class MyCard extends LitElement {
         color: #4f2a06;
         background-color: white;
         font-size: 15px;
-        margin: 0px 0px 5px 0px;
+        margin-top: 10px;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
       }
-      .btn:focus,
       .btn:hover {
         background-color: blue;
         color: white;
@@ -65,25 +65,26 @@ export class MyCard extends LitElement {
 
   render() {
     return html`
-    <div id = "cardlist">
       <div class="card">
-        <h1 class="cardheader"><b>${this.title}</b></h1>
-          <img src=${this.image} alt=${this.title} />
-        <p>Josh Allen is the greatest QB to ever live.</p>
-        <a href=${this.link} target="_blank">
+        <h1 class="cardheader">${this.title}</h1>
+        <img src="${this.image}" alt="${this.title}" />
+        <p>${this.description}</p> <!-- Now dynamic -->
+        <a href="${this.link}" target="_blank">
           <button class="btn"><em>Details</em></button>
         </a>
       </div>
-    </div>`;
+    `;
   }
 
-    static get properties() {
-      return {
-        title: { type: String },
-        image: { type: String },
-        link: { type: String},
-      };
-    }
+  static get properties() {
+    return {
+      title: { type: String },
+      image: { type: String },
+      link: { type: String },
+      description: { type: String } // New property
+    };
   }
+}
 
 globalThis.customElements.define(MyCard.tag, MyCard);
+

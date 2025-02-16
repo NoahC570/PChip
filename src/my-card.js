@@ -69,6 +69,16 @@ export class MyCard extends LitElement {
       }
     `;
   }
+  
+  openChanged(e) {
+    console.log(e.newState);
+    if (e.newState === "open") {
+      this.fancy = true;
+    }
+    else {
+      this.fancy = false;
+    }
+  }
 
   render() {
     return html`
@@ -76,7 +86,7 @@ export class MyCard extends LitElement {
         <h1 class="cardheader">${this.title}</h1>
         <img src="${this.image}" alt="${this.title}" />
         
-        <details ?open="${this.fancy}">
+          <details ?open="${this.fancy}" @toggle="${this.openChanged}">
           <summary><strong>Description</strong></summary>
           <div>
             <slot></slot> 

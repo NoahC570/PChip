@@ -17,7 +17,8 @@ export class MyCard extends LitElement {
     this.title = "Josh Allen";
     this.image = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Josh_Allen_SEPT2021_%28cropped2%29.jpg/1200px-Josh_Allen_SEPT2021_%28cropped2%29.jpg";
     this.link = "https://codepen.io/NoahC570/pen/ZYzZqzW";
-    this.description = "Josh Allen is the greatest QB to ever live."; // Default description
+    this.description = "Josh Allen is the greatest QB to ever live."; 
+    this.fancy = false;
   }
 
   static get styles() {
@@ -31,6 +32,12 @@ export class MyCard extends LitElement {
         text-align: center;
         padding: 15px;
         border-radius: 10px;
+      }
+      :host([fancy]) .card {
+        background-color: red;
+        border: 2px solid white;
+        box-shadow: 10px 5px 5px blue;
+        color: black;
       }
       .cardheader {
         color: yellow;
@@ -68,20 +75,28 @@ export class MyCard extends LitElement {
       <div class="card">
         <h1 class="cardheader">${this.title}</h1>
         <img src="${this.image}" alt="${this.title}" />
-        <p>${this.description}</p> <!-- Now dynamic -->
+        
+        <details ?open="${this.fancy}">
+          <summary><strong>Description</strong></summary>
+          <div>
+            <slot></slot> 
+          </div>
+        </details>
+  
         <a href="${this.link}" target="_blank">
           <button class="btn"><em>Details</em></button>
         </a>
       </div>
     `;
   }
+  
 
   static get properties() {
     return {
       title: { type: String },
       image: { type: String },
       link: { type: String },
-      description: { type: String } // New property
+      description: { type: String } 
     };
   }
 }

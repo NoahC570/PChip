@@ -96,10 +96,11 @@ export class MyCard extends LitElement {
       title: { type: String },
       image: { type: String },
       link: { type: String },
-      description: { type: String } 
+      description: { type: String },
+      fancy: { type: Boolean, reflect: true }
     };
   }
-}
+} 
 
 globalThis.customElements.define(MyCard.tag, MyCard);
 

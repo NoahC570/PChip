@@ -30,6 +30,7 @@
   <polaris-chip title="Faculty and Staff"></polaris-chip>
   <polaris-chip title="Sports are the only thing that matter"></polaris-chip>
   <polaris-chip title="Grants and donations"></polaris-chip>
+  <button id="fancy-toggle">Fancy Mode</button>
 
   <h1>my-card</h1>
   <my-card></my-card>
@@ -49,7 +50,6 @@
 </my-card>
 
 
-
 <my-card 
   title="Baker Mayfield" 
   image="https://th.bing.com/th/id/OSK.HEROR8l_iUuCmGjg6rpfarqGWNh9xa4IxluAI5T0RSZ9md0?rs=1&pid=ImgDetMain"
@@ -57,24 +57,44 @@
   I have had many ups and downs
 </my-card>
 
-<my-card fancy
+<my-card id = "patrick-mahomes"
   title="Patrick Mahomes" 
   image="https://media.gettyimages.com/id/1454894143/photo/kansas-city-chiefs-v-las-vegas-raiders.jpg?b=1&s=594x594&w=0&k=20&c=3lf5068CO8ItW_rqudzh6GiCvJrNY_9CmI0ZCa8RxTY="
   link="https://www.espn.com/nfl/player/_/id/3139477/patrick-mahomes">
-  I LOST the super bowl
+  I <strong>LOST</strong> the super bowl
 </my-card>
 
-<my-card fancy
+<my-card id = "jalen-hurts"
   title="Jalen Hurts" 
   image="https://s.yimg.com/ny/api/res/1.2/iDvwnfGOEcc4.anKt.dEeg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTU0MA--/https://media.zenfs.com/en/cinemablend_388/79d47092c3d0ab8138b2a2a2387d555d"
   link="https://www.espn.com/nfl/player/_/id/4040715/jalen-hurts">
-  I WON the super bowl 
+  I <strong>WON</strong> the super bowl 
 </my-card>
+
+<script>
+  document.getElementById("fancy-toggle").addEventListener("click", () => {
+    let mahomesCard = document.getElementById("patrick-mahomes");
+    let hurtsCard = document.getElementById("jalen-hurts");
+
+    if (mahomesCard.hasAttribute("fancy")) {
+      mahomesCard.removeAttribute("fancy");
+      hurtsCard.removeAttribute("fancy");
+    } else {
+      mahomesCard.setAttribute("fancy", "");
+      hurtsCard.setAttribute("fancy", "");
+    }
+  });
+</script>
 
 
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
   <script type="module" src="./src/my-card.js"></script>
+  <script>
+    document.getElementById("fancy-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("fancy-mode");
+    });
+  </script>
 </body>
 
 </html>
